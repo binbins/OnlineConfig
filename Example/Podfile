@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'OnlineConfig_Example' do
+  pod 'OnlineConfig', :path => '../'
+
+  target 'OnlineConfig_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
