@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OnlineConfig'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A short description of OnlineConfig.'
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'OnlineConfig/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'AFNetworking', '~> 3'
-  s.dependency 'JSONParse', '~>0.1.1'
+    s.dependency 'AFNetworking', '~> 3'
+  # s.dependency 'JSONParse', '~>0.1.1'
 end
