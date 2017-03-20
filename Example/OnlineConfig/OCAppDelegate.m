@@ -41,6 +41,8 @@
     NSArray *wrongArr = [ConfigRequest arrayForKey:@"other"];
     NSLog(@"appkey:%@ , native:%@, isreviewing:%d, wrongarr:%@", appkey, native, (int)isreviewing, wrongArr);
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@""]];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

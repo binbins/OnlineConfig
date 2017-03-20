@@ -25,8 +25,11 @@
 
 @interface ConfigRequest : NSObject
 
-@property (nonatomic, retain)AFHTTPSessionManager *afManager;
-#pragma mark - 从在线参数中取值
++ (AFHTTPSessionManager *)afManager;
+
++ (NSDictionary *)localConfig;
+
+#pragma mark - 从在线参数(params字典)中取值
 + (void)updateConfig:(NSString *)url;
 
 + (NSString *)stringForKey:(NSString *)key;
@@ -41,12 +44,6 @@
 
 + (int)intForKey:(NSString *)key;
 
-#pragma mark - 从字典中取值
-+ (NSDictionary *)optDictionary:(NSDictionary *)dict objectForKey:(NSString *)key;
-
-+ (NSString *)optString:(NSDictionary *)dict objectForKey:(NSString *)key;
-
-+ (int)optInt:(NSDictionary *)dict objectForKey:(NSString *)key;
 
 
 
