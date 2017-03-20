@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 binbins. All rights reserved.
 //
 
-#define CONFIGURL @"http://service.kv.dandanjiang.tv/online/params?apppackagename=com.zhangqinwan.wp&appversioncode=3&appversionname=1.1&package_name=com.zhangqinwan.wp&platform=ios&sys_language=zh-Hans-CN&sys_model=iPhone&sys_name=iOS&sys_ver=10.2.2"
+
 #define testurl @"http://192.168.0.217:9100/"
 
 #import "OCAppDelegate.h"
@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [ConfigRequest updateConfig:CONFIGURL];
+    [ConfigRequest updateConfig:testurl];
     return YES;
 }
 

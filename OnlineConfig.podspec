@@ -38,6 +38,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'OnlineConfig/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'AFNetworking', '~> 3'
-  s.dependency 'JSONParse', '~>0.1.1'
+    s.dependency 'AFNetworking', '~> 3'
+  # s.dependency 'JSONParse', '~>0.1.1'
 end

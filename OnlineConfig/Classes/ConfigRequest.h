@@ -20,14 +20,14 @@
 
 
 #import <Foundation/Foundation.h>
-
-
-
+@import AFNetworking;
 
 
 @interface ConfigRequest : NSObject
 
-+ (void)updateConfig:(NSString *)url;    //刚运行和返回前台时调用
+@property (nonatomic, retain)AFHTTPSessionManager *afManager;
+#pragma mark - 从在线参数中取值
++ (void)updateConfig:(NSString *)url;
 
 + (NSString *)stringForKey:(NSString *)key;
 
@@ -40,6 +40,15 @@
 + (BOOL)boolForKey:(NSString *)key;
 
 + (int)intForKey:(NSString *)key;
+
+#pragma mark - 从字典中取值
++ (NSDictionary *)optDictionary:(NSDictionary *)dict objectForKey:(NSString *)key;
+
++ (NSString *)optString:(NSDictionary *)dict objectForKey:(NSString *)key;
+
++ (int)optInt:(NSDictionary *)dict objectForKey:(NSString *)key;
+
+
 
 
 @end
