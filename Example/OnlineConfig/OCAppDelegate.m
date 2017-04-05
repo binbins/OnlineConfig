@@ -7,7 +7,7 @@
 //
 
 
-#define testurl @"http://192.168.0.217:9100/"
+#define testurl @"http://service.kv.dandanjiang.tv/remote"
 
 #import "OCAppDelegate.h"
 @import OnlineConfig;
@@ -37,9 +37,9 @@
     [ConfigRequest updateConfig:testurl];
     NSDictionary *appkey = [ConfigRequest dictionaryForKey:@"appkey"];
     NSArray *native = [ConfigRequest arrayForKey:@"pos_native"];
-    BOOL isreviewing = [ConfigRequest boolForKey:@"isreviewing"];
+    BOOL isreviewing = [ConfigRequest boolForKey:@"a_taolu_enable"];
     NSArray *wrongArr = [ConfigRequest arrayForKey:@"other"];
-    NSLog(@"appkey:%@ , native:%@, isreviewing:%d, wrongarr:%@", appkey, native, (int)isreviewing, wrongArr);
+    NSLog(@"appkey:%@ , native:%@, a_taolu_enable:%d, wrongarr:%@", appkey, native, (int)isreviewing, wrongArr);
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@""]];

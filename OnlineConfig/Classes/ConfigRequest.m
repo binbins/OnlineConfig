@@ -9,6 +9,7 @@
 #import "ConfigRequest.h"
 #import "SafeObject.h"
 #import "NSString+ToObject.h"
+#import <CommonCrypto/CommonDigest.h>
 
 
 @interface ConfigRequest()
@@ -43,7 +44,7 @@
 
     if ([SafeObject objIsNull:url]) return;
     
-    [[ConfigRequest afManager] GET:url parameters:AppAdRespInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[ConfigRequest afManager] GET:url parameters:[self getRequestParas] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if ([USERDEFAULTS objectForKey:LocalConfigKey] == nil) {
             [USERDEFAULTS setObject:@{@"la":@"la"} forKey:LocalConfigKey];
@@ -114,6 +115,27 @@
 
 #pragma mark - 内部方法
 
++ (NSString *) md5:(NSString *) input {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5( cStr, (CC_LONG)strlen(cStr), digest ); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return  output;
+}
+
++ (NSDictionary *)getRequestParas {
+    NSString *language = [CurrentLanguage hasPrefix:@"zh-"] ? @"CN" : @"EN";
+    NSString *md5BundleId = [self md5: AppBundleID];
+    
+    NSDictionary *paras = @{@"os": @"iOS", @"appid" : md5BundleId, @"appver":AppVerName, @"appvercode":AppVerCode, @"sys_name":SysName, @"sys_ver":SysVersion, @"sys_model":SysModel, @"lan":language};
+    return paras;
+}
+
 + (void)checkConfigResult:(NSDictionary *)result {
 
     if ([SafeObject objIsNull:result] || ![result isKindOfClass:[NSDictionary class]]) {
@@ -132,14 +154,8 @@
         return;
     }
     
-    NSDictionary *params = [SafeObject safeDictionary:res objectForKey:@"params"];   //有问题，没有判断是不是字典
-    if ([SafeObject objIsNull:params] || ![params isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"params 非法");
-        return;
-    }
-    
-    [USERDEFAULTS setObject:params forKey:LocalConfigKey];
-    NSLog(@"request succeed ! content:%@",params);
+    [USERDEFAULTS setObject:res forKey:LocalConfigKey];
+    NSLog(@"request succeed ! content:%@",res);
 }
 
 

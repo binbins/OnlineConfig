@@ -14,7 +14,6 @@
 #define CurrentLanguage [[NSLocale preferredLanguages] count] > 0 ? [[NSLocale preferredLanguages] objectAtIndex:0] : @""
 
 
-#define AppAdRespInfoDict @{@"platform": @"ios", @"apppackagename" : AppBundleID, @"appversionname":AppVerName, @"appversioncode":AppVerCode, @"sys_name":SysName, @"sys_ver":SysVersion, @"sys_model":SysModel, @"sys_language":CurrentLanguage, @"package_name" : AppBundleID,}
 #define USERDEFAULTS [NSUserDefaults standardUserDefaults]
 #define LocalConfigKey @"AD_config_key"
 
