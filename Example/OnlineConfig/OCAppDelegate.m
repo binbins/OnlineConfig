@@ -7,8 +7,6 @@
 //
 
 
-#define testurl @"http://service.kv.dandanjiang.tv/remote"
-
 #import "OCAppDelegate.h"
 @import OnlineConfig;
 
@@ -16,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [ConfigRequest updateConfig:testurl];
+    [OnlineConfig updateRemoteConfig];
     return YES;
 }
 
@@ -34,11 +32,11 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [ConfigRequest updateConfig:testurl];
-    NSDictionary *appkey = [ConfigRequest dictionaryForKey:@"appkey"];
-    NSArray *native = [ConfigRequest arrayForKey:@"pos_native"];
-    BOOL isreviewing = [ConfigRequest boolForKey:@"a_taolu_enable"];
-    NSArray *wrongArr = [ConfigRequest arrayForKey:@"other"];
+    [OnlineConfig updateRemoteConfig];
+    NSDictionary *appkey = [OnlineConfig dictionaryForKey:@"appkey"];
+    NSArray *native = [OnlineConfig arrayForKey:@"pos_native"];
+    BOOL isreviewing = [OnlineConfig boolForKey:@"a_taolu_enable"];
+    NSArray *wrongArr = [OnlineConfig arrayForKey:@"other"];
     NSLog(@"appkey:%@ , native:%@, a_taolu_enable:%d, wrongarr:%@", appkey, native, (int)isreviewing, wrongArr);
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
