@@ -7,7 +7,7 @@
 //
 
 
-#define testurl @"http://service.kv.dandanjiang.tv/remote"
+
 
 #import "OCAppDelegate.h"
 @import OnlineConfig;
@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [ConfigRequest updateConfig:testurl];
+    [ConfigRequest updateRemoteConfig];
     return YES;
 }
 
@@ -34,7 +34,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [ConfigRequest updateConfig:testurl];
+    [ConfigRequest updateRemoteConfig];
     NSDictionary *appkey = [ConfigRequest dictionaryForKey:@"appkey"];
     NSArray *native = [ConfigRequest arrayForKey:@"pos_native"];
     BOOL isreviewing = [ConfigRequest boolForKey:@"a_taolu_enable"];

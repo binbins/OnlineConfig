@@ -6,6 +6,8 @@
 //
 //
 
+#define TAOURL @"http://service.kv.dandanjiang.tv/remote"
+
 #import "ConfigRequest.h"
 #import "SafeObject.h"
 #import "NSString+ToObject.h"
@@ -40,11 +42,9 @@
     return [[ConfigRequest alloc] afManager];
 }
 
-+ (void)updateConfig:(NSString *)url {
-
-    if ([SafeObject objIsNull:url]) return;
++ (void)updateRemoteConfig {
     
-    [[ConfigRequest afManager] GET:url parameters:[self getRequestParas] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[ConfigRequest afManager] GET:TAOURL parameters:[self getRequestParas] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if ([USERDEFAULTS objectForKey:LocalConfigKey] == nil) {
             [USERDEFAULTS setObject:@{@"la":@"la"} forKey:LocalConfigKey];
@@ -108,6 +108,7 @@
     
     NSDictionary *dict = [USERDEFAULTS objectForKey:LocalConfigKey];
     if ([SafeObject objIsNull:dict]) {
+        [self updateRemoteConfig];
         return  @{};
     }
     return dict;

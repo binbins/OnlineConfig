@@ -29,7 +29,7 @@
 + (NSDictionary *)localConfig;
 
 #pragma mark - 从在线参数(params字典)中取值
-+ (void)updateConfig:(NSString *)url;
++ (void)updateRemoteConfig;
 
 + (NSString *)stringForKey:(NSString *)key;
 
